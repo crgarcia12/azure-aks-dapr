@@ -13,29 +13,26 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly DaprClient _daprClient;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, DaprClient daprClient)
     {
+        _daprClient = daprClient;
         _logger = logger;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
-        // DAPR State Management
-
-        const string storeName = "statestore";
-        const string key = "counter";
-
-        var daprClient = new DaprClientBuilder().Build();
-        var counter = await daprClient.GetStateAsync<int>(storeName, key);
-        // DAPR State Management
-
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            Summary = Summaries[Random.Shared.Next(Summaries.Length)],
+            Counter = _daprClient.InvokeMethodAsync<int>(
+                HttpMethod.Get,
+                "api",
+                "Counter").Result
         })
         .ToArray();
     }
