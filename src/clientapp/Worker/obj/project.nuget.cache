@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "kjA7XIawWiINVWDSOe0tsgDEFmnafLLHnQvfVhMM01gCWbvI8zRDLoRhsdoOvYHdl5wrBAK7UCYI4C0Rh0VCcw==",
+  "success": true,
+  "projectFilePath": "C:\\gitrepos\\github\\crgarcia12\\azure-aks-dapr\\src\\clientapp\\Worker\\Worker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\crgar\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.14.0\\microsoft.visualstudio.azure.containers.tools.targets.1.14.0.nupkg.sha512"
+  ],
+  "logs": []
+}

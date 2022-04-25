@@ -17,3 +17,10 @@ builder.Services.AddDaprClient();
 controller code
 ```
 
+```
+.Net Generate assets for build & debug
+Dapr: Scafold dapr Task
+Debug: Select and start deb Debug Configu
+```
+
+https://docs.dapr.io/developing-applications/ides/vscode/vscode-dapr-extension/#scaffold-dapr-debugging-tasks
