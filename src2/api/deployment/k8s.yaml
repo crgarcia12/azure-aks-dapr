@@ -1,0 +1,38 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: demoapi
+  labels:
+    app: demoapi
+spec:
+  selector:
+    app: demoapi
+  ports:
+    - port: 80
+  type: LoadBalancer
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: demoapi
+  labels:
+    app: demoapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demoapi
+  template:
+    metadata:
+      labels:
+        app: demoapi
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "demoapi"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+      - name: demoapi
+        image: crgarakspublicacr.azurecr.io/demoapi:1.0.5
+        ports:
+        - containerPort: 80

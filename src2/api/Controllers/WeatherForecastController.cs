@@ -24,16 +24,25 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        _logger.LogInformation($"LOG: {nameof(WeatherForecastController)}.{nameof(Get)} entering");
+
+        try
         {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)],
-            Counter = _daprClient.InvokeMethodAsync<int>(
-                HttpMethod.Get,
-                "api",
-                "Counter").Result
-        })
-        .ToArray();
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(index),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)],
+                Counter = _daprClient.InvokeMethodAsync<int>(
+                    HttpMethod.Get,
+                    "demoapi",
+                    "Counter").Result
+            }).ToArray();
+        } 
+        catch (Exception ex)
+        {
+            _logger.LogError($"LOG: {nameof(WeatherForecastController)}.{nameof(Get)} Error: " + ex.Message);
+            throw;
+        }
     }
 }
