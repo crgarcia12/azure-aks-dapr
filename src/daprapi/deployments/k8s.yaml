@@ -1,0 +1,38 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: daprapi
+  labels:
+    app: daprapi
+spec:
+  selector:
+    app: daprapi
+  ports:
+    - port: 80
+  type: LoadBalancer
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: daprapi
+  labels:
+    app: daprapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: daprapi
+  template:
+    metadata:
+      labels:
+        app: daprapi
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "daprapi"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+      - name: daprapi
+        image: crgarakspublicacr.azurecr.io/daprapi:1.0.9
+        ports:
+        - containerPort: 80
