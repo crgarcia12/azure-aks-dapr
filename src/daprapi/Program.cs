@@ -18,6 +18,7 @@ var app = builder.Build();
         c.SwaggerEndpoint("./swagger/v1/swagger.json", "DAPR API");
         c.RoutePrefix = "";
     });
+    app.UseDeveloperExceptionPage();
 // }
 
 // app.UseHttpsRedirection();
