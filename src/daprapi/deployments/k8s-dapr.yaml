@@ -26,6 +26,10 @@ spec:
     metadata:
       labels:
         app: daprdemo
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "daprdemo"
+        dapr.io/app-port: "80"
     spec:
       containers:
       - name: daprdemo
