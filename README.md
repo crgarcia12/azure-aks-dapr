@@ -46,8 +46,9 @@ In Program.cs, add:
 ```
 builder.Services.AddDaprClient();
 ```
+dapr run --app-id daprapi --app-port 6002 --dapr-http-port 3602 --dapr-grpc-port 60002 --app-ssl dotnet run
+dapr run --app-id client --app-port 6003 --dapr-http-port 3603 --dapr-grpc-port 60003 --app-ssl dotnet run
 
-dapr run --app-id myapp --app-port 5000 -- dotnet run
 ## Install DAPR in the cluster
 
 dapr init --kubernetes
