@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: client
+  name: daprclient
   labels:
-    app: client
+    app: daprclient
 spec:
   selector:
-    app: client
+    app: daprclient
   ports:
     - port: 80
   type: LoadBalancer
@@ -14,21 +14,21 @@ spec:
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: client
+  name: daprclient
   labels:
-    app: client
+    app: daprclient
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: client
+      app: daprclient
   template:
     metadata:
       labels:
-        app: client
+        app: daprclient
     spec:
       containers:
-      - name: client
-        image: crgarakspublicacr.azurecr.io/client:1.0.12
+      - name: daprclient
+        image: crgarakspublicacr.azurecr.io/daprclient:1.0.12
         ports:
         - containerPort: 80

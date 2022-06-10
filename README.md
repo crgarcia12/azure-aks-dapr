@@ -68,8 +68,7 @@ https://docs.dapr.io/developing-applications/ides/vscode/vscode-dapr-extension/#
 
 ## Add a DOCKERFILE
 az acr login -n crgarakspublicacr
-docker build -t crgarakspublicacr.azurecr.io/daprdemo:1.0.10 .
-docker push crgarakspublicacr.azurecr.io/daprdemo:1.0.10
+
 docker run -p 4444:80 crgarakspublicacr.azurecr.io/daprdemo:1.0.10
 
 ## Deploy the app and DAPR components

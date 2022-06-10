@@ -30,6 +30,8 @@ spec:
         dapr.io/enabled: "true"
         dapr.io/app-id: "daprapi"
         dapr.io/app-port: "80"
+        dapr.io/enable-api-logging: "true"
+        
     spec:
       containers:
       - name: daprapi
